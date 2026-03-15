@@ -12,7 +12,7 @@ private:
     static const double PI;
 
 public:
-    Circle(double r = 0.0);
+    explicit Circle(double r = 0.0);
 
     void setRadius(double r);
     void setFerence(double f);

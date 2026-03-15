@@ -10,6 +10,7 @@ struct PoolCosts {
     double totalCost;
 };
 
+double calculateEarthRopeGap();
 PoolCosts calculatePoolCosts(double poolRadius = 3.0, 
                              double pathWidth = 1.0,
                              double concretePrice = 1000.0, 
