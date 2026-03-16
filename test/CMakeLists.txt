@@ -8,24 +8,14 @@ target_include_directories(${PROJECT_NAME}.test
     ${gtest_SOURCE_DIR}/googletest/include
 )
 
-find_package(Threads REQUIRED)
-
 target_link_libraries(${PROJECT_NAME}.test
   ${PROJECT_NAME}
   gtest
   gtest_main
-  Threads::Threads
-)
-
-target_link_directories(${PROJECT_NAME}.test
-  PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../src/Release"
+  pthread  # В Linux нужен pthread
 )
 
 add_dependencies(${PROJECT_NAME}.test ${PROJECT_NAME})
-
-set_target_properties(${PROJECT_NAME}.test PROPERTIES
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/Release"
-)
 
 include(GoogleTest)
 gtest_discover_tests(${PROJECT_NAME}.test)

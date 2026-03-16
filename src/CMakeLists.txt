@@ -17,15 +17,9 @@ target_include_directories(${PROJECT_NAME}
          ${${PROJECT_NAME}_SOURCE_DIR}/include
 )
 
-find_package(Threads REQUIRED)
+# В Linux нужен pthread
 target_link_libraries(${PROJECT_NAME}
-  Threads::Threads
-)
-
-set_target_properties(${PROJECT_NAME} PROPERTIES
-  ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/Release"
-  LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/Release"
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/Release"
+  pthread
 )
 
 add_executable(${PROJECT_NAME}.info 
@@ -42,10 +36,6 @@ target_link_libraries(${PROJECT_NAME}.info
 )
 
 add_dependencies(${PROJECT_NAME}.info ${PROJECT_NAME})
-
-set_target_properties(${PROJECT_NAME}.info PROPERTIES
-  RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/Release"
-)
 
 install(TARGETS ${PROJECT_NAME}
   LIBRARY DESTINATION "${lib_dest}"

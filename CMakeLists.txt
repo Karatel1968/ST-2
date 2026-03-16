@@ -8,7 +8,6 @@ set(tool_dest "bin")
 set(lib_dest "lib")
 set(include_dest "include/")
 
-# Загрузка Google Test
 include(FetchContent)
 FetchContent_Declare(
   googletest
