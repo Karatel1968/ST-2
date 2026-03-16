@@ -2,18 +2,8 @@
 #ifndef INCLUDE_CIRCLE_H_
 #define INCLUDE_CIRCLE_H_
 
-double calculateEarthRopeGap();
-
-struct PoolCosts {
-    double concreteCost;
-    double fenceCost;
-    double totalCost;
-};
-
-double calculateEarthRopeGap();
-PoolCosts calculatePoolCosts(double poolRadius = 3.0, 
-                             double pathWidth = 1.0,
-                             double concretePrice = 1000.0, 
-                             double fencePrice = 2000.0);
+double ropeGap();
+double poolConcreteCost();
+double poolFenceCost();
 
 #endif  // INCLUDE_CIRCLE_H_

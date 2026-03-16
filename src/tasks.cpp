@@ -1,28 +1,43 @@
 // Copyright 2022 UNN-CS
-#include "tasks.h"
 #include "circle.h"
 #include <cmath>
+#include "tasks.h"
 
-double calculateEarthRopeGap() {
-    const double EARTH_RADIUS = 6378100.0;
-    Circle earth(EARTH_RADIUS);
-    double earthFerence = earth.getFerence();
-    double newFerence = earthFerence + 1.0;
-    Circle newCircle;
-    newCircle.setFerence(newFerence);
-    double gap = newCircle.getRadius() - EARTH_RADIUS;
-    return gap;
+const double PI = 3.141592653589793;
+
+double ropeGap() {
+
+    double earthRadius = 6378.1 * 1000; 
+
+    Circle earth(earthRadius);
+
+    double newLength = earth.getFerence() + 1;
+
+    Circle rope(1);
+    rope.setFerence(newLength);
+
+    return rope.getRadius() - earth.getRadius();
 }
 
-PoolCosts calculatePoolCosts(double poolRadius, double pathWidth,
-                             double concretePrice, double fencePrice) {
-    PoolCosts costs = {0.0, 0.0, 0.0};
+double poolConcreteCost() {
+
+    double poolRadius = 3;
+    double pathWidth = 1;
+
     Circle pool(poolRadius);
     Circle poolWithPath(poolRadius + pathWidth);
+
     double pathArea = poolWithPath.getArea() - pool.getArea();
-    costs.concreteCost = pathArea * concretePrice;
-    double fenceLength = poolWithPath.getFerence();
-    costs.fenceCost = fenceLength * fencePrice;
-    costs.totalCost = costs.concreteCost + costs.fenceCost;
-    return costs;
+
+    return pathArea * 1000;
+}
+
+double poolFenceCost() {
+
+    double poolRadius = 3;
+    double pathWidth = 1;
+
+    Circle poolWithPath(poolRadius + pathWidth);
+
+    return poolWithPath.getFerence() * 2000;
 }
