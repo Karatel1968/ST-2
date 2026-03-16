@@ -1,13 +1,12 @@
 // Copyright 2022 UNN-CS
 #include "circle.h"
-#include <cmath>
 #include "tasks.h"
+#include <cmath>
 
 const double PI = 3.141592653589793;
 
 double ropeGap() {
-
-    double earthRadius = 6378.1 * 1000; 
+    double earthRadius = 6378.1 * 1000;
 
     Circle earth(earthRadius);
 
@@ -20,7 +19,6 @@ double ropeGap() {
 }
 
 double poolConcreteCost() {
-
     double poolRadius = 3;
     double pathWidth = 1;
 
@@ -33,7 +31,6 @@ double poolConcreteCost() {
 }
 
 double poolFenceCost() {
-
     double poolRadius = 3;
     double pathWidth = 1;
 
