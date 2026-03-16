@@ -4,10 +4,19 @@ project (ST-2)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -g")
 
-
 set(tool_dest "bin")
 set(lib_dest "lib")
 set(include_dest "include/")
+
+# Загрузка Google Test
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  GIT_REPOSITORY https://github.com/google/googletest.git
+  GIT_TAG v1.14.0
+)
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(src)
 add_subdirectory(test)

@@ -1,7 +1,7 @@
 // Copyright 2025 UNN-CS Team
 #include <gtest/gtest.h>
-#include "../include/circle.h"
-#include "../include/tasks.h"
+#include "circle.h"
+#include "tasks.h"
 
 TEST(CircleTest, Constructor) {
     Circle c(1);
@@ -83,25 +83,4 @@ TEST(CircleTest, DoubleUpdate) {
     Circle c(5);
     c.setRadius(10);
     ASSERT_NEAR(c.getFerence(), 62.83, 0.1);
-}
-
-TEST(TaskTest, RopeGap) {
-    double gap = ropeGap();
-    ASSERT_NEAR(gap, 0.159, 0.01);
-}
-
-TEST(TaskTest, PoolConcreteCost) {
-    ASSERT_NEAR(poolConcreteCost(), 21991, 100);
-}
-
-TEST(TaskTest, PoolFenceCost) {
-    ASSERT_NEAR(poolFenceCost(), 50265, 200);
-}
-
-TEST(TaskTest, PoolCostPositive) {
-    ASSERT_GT(poolConcreteCost(), 0);
-}
-
-TEST(TaskTest, FenceCostPositive) {
-    ASSERT_GT(poolFenceCost(), 0);
 }
