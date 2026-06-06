@@ -84,3 +84,56 @@ TEST(CircleTest, DoubleUpdate) {
     c.setRadius(10);
     ASSERT_NEAR(c.getFerence(), 62.83, 0.1);
 }
+
+TEST(CircleTest, ReciprocalConversion) {
+    Circle c(7.5);
+    double originalRadius = c.getRadius();
+    double originalFerence = c.getFerence();
+    double originalArea = c.getArea();
+
+    Circle c2(1);
+    c2.setFerence(originalFerence);
+    ASSERT_NEAR(c2.getRadius(), originalRadius, 0.001);
+
+    Circle c3(1);
+    c3.setArea(originalArea);
+    ASSERT_NEAR(c3.getRadius(), originalRadius, 0.001);
+}
+
+TEST(CircleTest, MultipleUpdates) {
+    Circle c(2);
+    c.setRadius(4);
+    c.setFerence(25.1327);
+    ASSERT_NEAR(c.getRadius(), 4, 0.01);
+    ASSERT_NEAR(c.getArea(), 50.265, 0.1);
+}
+
+TEST(CircleTest, HighPrecisionRadius) {
+    Circle c(123.456);
+    ASSERT_NEAR(c.getRadius(), 123.456, 0.0001);
+    ASSERT_NEAR(c.getFerence(), 2 * 3.141592653589793 * 123.456, 0.001);
+}
+
+TEST(CircleTest, TasksCompilation) {
+    double gap = ropeGap();
+    double cost = poolConcreteCost();
+    double fence = poolFenceCost();
+    EXPECT_GT(gap, 0.1);
+    EXPECT_GT(cost, 0);
+    EXPECT_GT(fence, 0);
+}
+
+TEST(CircleTest, ZeroFerence) {
+    Circle c(1);
+    c.setFerence(0);
+    ASSERT_EQ(c.getRadius(), 0);
+    ASSERT_EQ(c.getArea(), 0);
+}
+
+TEST(CircleTest, SetAreaThenRadius) {
+    Circle c(5);
+    c.setArea(100);
+    double r1 = c.getRadius();
+    c.setRadius(r1);
+    ASSERT_NEAR(c.getArea(), 100, 0.001);
+}
